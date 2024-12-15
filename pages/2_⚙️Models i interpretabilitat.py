@@ -3,6 +3,8 @@ import pandas as pd
 
 import config as cfg
 
+st.title('Explicabilitat global')
+
 def display_images(index):
     images = []
     captions = []
@@ -20,10 +22,18 @@ def display_images(index):
             st.image(image_path, use_container_width =True, caption=captions[i])
             
 def display_more_info(index):
-    pass
+    st.subheader('Explicabilitat mitjançant models CRF')
+    st.markdown("""
+                Els models CRF (Conditional Random Field) permeten interconnectar totes les variables, 
+                cosa que no només facilita la realització de prediccions, sinó també l’identificació dels 
+                factors que contribueixen de manera més significativa a predir casos específics.
+                """)
+    df = pd.read_csv(f'model_results/any{index}_crf.csv', sep=';')
+    df = df.set_index(cfg.METRIC_COLUMN)
+    
+    st.dataframe(df)
 
 df0 = pd.read_csv('model_results/any0.csv', sep=';')
-print(df0)
 df0 = df0.set_index(cfg.METRIC_COLUMN)
 
 df1 = pd.read_csv('model_results/any1.csv', sep=';')
@@ -54,15 +64,18 @@ with tab1:
     st.write(list(sheets.keys())[0])
     st.dataframe(sheet1)
     display_images(index)
+    display_more_info(index)
 
 with tab2:
     index = 1
     st.write(list(sheets.keys())[1])
     st.dataframe(sheet2)
     display_images(index)
+    display_more_info(index)
 
 with tab3:
     index = 2
     st.write(list(sheets.keys())[2])
     st.dataframe(sheet3)
     display_images(index)
+    display_more_info(index)

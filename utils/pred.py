@@ -85,7 +85,7 @@ class FibroPred:
             print("tarfet", type(target), target)
             model = self.models[target]       
             predictions = model.predict(ddata)
-            print("PREdiction of ", target, predictions)
+            print("Prediction of ", target, predictions)
             explainer = shap.Explainer(self.models[target])
             shap_values = explainer(ddata)
 
@@ -258,14 +258,29 @@ class FibroPred:
     def _find_models(self):
           models = {}
           feature_importances = {}
+        
+          output_dir = "models_pesos"
+          if not os.path.exists(output_dir):
+              os.makedirs(output_dir)
+
           for target in self.targets:
               print("Training model for target", target)
               if self.model_type != "CRF":
-                  model = self._get_best_model(target)
-                  models[target] = model
+                  name_model = "xgboost_" + target + "_" + str(self.years) + ".json"
+                  path_model = os.path.join(output_dir,name_model)
+
+                  if os.path.exists(path_model):
+                      print("Loading models")
+                      model = XGBClassifier(enable_categorical=True)  # Create an empty XGBClassifier
+                      model.load_model(path_model)  # Load the model using XGBoost's load_model method
+                      models[target] = model
+                  else:
+                      model = self._get_best_model(target)
+                      models[target] = model
+                      model.save_model(path_model)
               else:
-                model, feature_importances = self._crfmodel(target, feature_importances)
-                models[target] = model
+                  model, feature_importances = self._crfmodel(target, feature_importances)
+                  models[target] = model
 
           if self.model_type != "CRF":
               return models

@@ -4,20 +4,6 @@ import pandas as pd
 from utils.pred import FibroPred
 import config as cfg
 
-def make_inference(model_type, pandas_row):
-    dict_output = output = {
-            'Progressive disease':1.0, 
-            'Death':1.0, 
-            'Necessity of transplantation':0.0
-        }
-
-    images = ['images/test.jpg'] * 3
-    images1 = ['images/test1.jpg'] * 3
-    images = [images, images1]
-
-    return dict_output, images
-
-
 ruta_copia = cfg.OUTPUT_DATA
 
 df = pd.read_csv(ruta_copia, sep=";")  # Usar coma como delimitador (por defecto)
@@ -80,6 +66,17 @@ if st.session_state['model_type'] != -1:
     counter_max = len(images)
 
     images_per_list = len(images[counter])
+    
+    title = cfg.IMAGES_NAMES[counter]
+    
+    st.markdown(
+    f"""
+    <div style="text-align: center; font-size: 16px; font-weight: bold; margin-bottom: 10px;">
+        {title}
+    </div>
+    """,
+    unsafe_allow_html=True,
+    )  
 
     left, right = st.columns(2)
 
@@ -90,8 +87,7 @@ if st.session_state['model_type'] != -1:
     if st.button('Next'):
         counter += 1
         counter = counter % 3
-
-    st.session_state['counter'] = counter
+        st.session_state['counter'] = counter
 
 else:
     if 'output' in st.session_state:
@@ -109,6 +105,17 @@ else:
         counter_max = st.session_state['counter_max']
 
         images_per_list = len(images[counter])
+        
+        title = cfg.IMAGES_NAMES[counter]
+    
+        st.markdown(
+        f"""
+        <div style="text-align: center; font-size: 16px; font-weight: bold; margin-bottom: 10px;">
+            {title}
+        </div>
+        """,
+        unsafe_allow_html=True,
+        )  
 
         left, right = st.columns(2)
 

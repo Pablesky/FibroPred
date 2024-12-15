@@ -30,3 +30,9 @@ INPUT_DATA = 'content/FibroPredCODIFICADA_Updated_after_diagnosis.csv'
 OUTPUT_DATA = 'content/data_prueba.csv'
 
 AGE_COLUMN = 'Age_Group'
+
+IMAGES_NAMES = [
+    'Progressive disease', 
+    'Death', 
+    'Necessity of transplantation'
+]

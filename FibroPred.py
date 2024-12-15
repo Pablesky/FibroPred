@@ -21,7 +21,7 @@ st.set_page_config(
 )
 
 
-st.write("# Predictor pronòstic en fibrosi pulmonar (FibroPred)")
+st.write("# 🧬Predictor pronòstic en fibrosi pulmonar (FibroPred)")
 st.write("## Introducció")
 
 

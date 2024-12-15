@@ -13,6 +13,7 @@ from sklearn_crfsuite import CRF, metrics
 from collections import Counter
 import warnings
 import os
+import shutil
 
 
 class FibroPred:
@@ -81,6 +82,10 @@ class FibroPred:
     def local_explainability(self, ddata):
         preds = {}
         paths = []
+        output_dir = "tmp"
+        if os.path.exists(output_dir):
+            shutil.rmtree(output_dir)
+        os.makedirs(output_dir)
         for target in self.targets:
             print("tarfet", type(target), target)
             model = self.models[target]       
@@ -89,9 +94,6 @@ class FibroPred:
             explainer = shap.Explainer(self.models[target])
             shap_values = explainer(ddata)
 
-            output_dir = "tmp"
-            if not os.path.exists(output_dir):
-                os.makedirs(output_dir)
             plt.figure()          
             shap.plots.waterfall(shap_values[0], show = False)
             print("predictions", predictions)

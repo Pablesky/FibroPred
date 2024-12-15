@@ -139,7 +139,7 @@ st.pyplot(fig)
 
 
 
-st.write("### Nombre de morts segon tabaquisme")
+st.write("### Nombre de morts segons tabaquisme")
 
 st.markdown(
     """

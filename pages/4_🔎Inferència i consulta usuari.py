@@ -24,13 +24,13 @@ left,center, right = st.columns(3)
 
 model_type = -1
 
-if left.button('atDiagnosticTime'):
+if left.button('Any 0'):
     model_type = 0
 
-if center.button('oneYearAfter'):
+if center.button('Any 1'):
     model_type = 1
 
-if right.button('twoYearsAfter'):
+if right.button('Any 2'):
     model_type = 2
 
 st.session_state['model_type'] = model_type
@@ -44,9 +44,11 @@ if st.session_state['model_type'] != -1:
     
     else:
         model = st.session_state['model']
+        
+    # st.session_state['model'] = model
 
     output, images = model.inference(row=actual_fila)
-
+    
     st.session_state['output'] = output
     st.session_state['images'] = images
 
@@ -67,66 +69,38 @@ if st.session_state['model_type'] != -1:
 
     images_per_list = len(images[counter])
     
-    title = cfg.IMAGES_NAMES[counter]
+    tab1, tab2, tab3 = st.tabs(cfg.TARGET_COLUMNS)
     
-    st.markdown(
-    f"""
-    <div style="text-align: center; font-size: 16px; font-weight: bold; margin-bottom: 10px;">
-        {title}
-    </div>
-    """,
-    unsafe_allow_html=True,
-    )  
-
-    left, right = st.columns(2)
-
-    left.image(images[counter][0])
-
-    right.image(images[counter][1])
-
-    if st.button('Next'):
-        counter += 1
-        counter = counter % 3
-        st.session_state['counter'] = counter
-
-else:
-    if 'output' in st.session_state:
-
-        output = st.session_state['output']
-        images = st.session_state['images']
-
-        left, center, right = st.columns(3)
-
-        left.metric(label="Death Prediction", value=output['Death'], border=True)
-        center.metric(label="Progressive disease", value=output['Progressive disease'], border=True)
-        right.metric(label="Necessity of Transplantation Prediction", value=output['Necessity of transplantation'], border=True)
-
-        counter = st.session_state['counter']
-        counter_max = st.session_state['counter_max']
-
-        images_per_list = len(images[counter])
-        
-        title = cfg.IMAGES_NAMES[counter]
-    
-        st.markdown(
-        f"""
-        <div style="text-align: center; font-size: 16px; font-weight: bold; margin-bottom: 10px;">
-            {title}
-        </div>
-        """,
-        unsafe_allow_html=True,
-        )  
-
+    with tab1:
+        counter = 0
         left, right = st.columns(2)
 
         left.image(images[counter][0])
 
         right.image(images[counter][1])
 
-        if st.button('Next'):
-            counter += 1
-            counter = counter % counter_max
-            st.session_state['counter'] = counter
+        st.session_state['counter'] = counter
+        
+    with tab2:
+        counter = 1
+        left, right = st.columns(2)
+
+        left.image(images[counter][0])
+
+        right.image(images[counter][1])
+
+        st.session_state['counter'] = counter
+        
+    with tab3:
+        counter = 2
+        left, right = st.columns(2)
+
+        left.image(images[counter][0])
+
+        right.image(images[counter][1])
+
+        st.session_state['counter'] = counter
+    
 
 
 

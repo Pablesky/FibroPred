@@ -51,9 +51,9 @@ sheet3 = df2
 
 # Dictionary to store sheets
 sheets = {
-    "At diagnosis": sheet1,
-    "After one year": sheet2,
-    "After two years": sheet3,
+    "Al moment del diagnòstic": sheet1,
+    "Després d'un any": sheet2,
+    "Després de dos anys": sheet3,
 }
 
 # Tabs for different sheets
@@ -61,21 +61,18 @@ tab1, tab2, tab3 = st.tabs(sheets.keys())
 
 with tab1:
     index = 0
-    st.write(list(sheets.keys())[0])
     st.dataframe(sheet1)
     display_images(index)
     display_more_info(index)
 
 with tab2:
     index = 1
-    st.write(list(sheets.keys())[1])
     st.dataframe(sheet2)
     display_images(index)
     display_more_info(index)
 
 with tab3:
     index = 2
-    st.write(list(sheets.keys())[2])
     st.dataframe(sheet3)
     display_images(index)
     display_more_info(index)

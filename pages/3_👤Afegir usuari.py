@@ -5,26 +5,21 @@ import os
 import config as cfg
 
 # Configurar título de la página
-st.title("Introducir Nuevos Datos al Excel")
+st.title("Introduir noves dades a la base de dades")
 
 # Ruta del archivo original y copia
 ruta_original = cfg.OUTPUT_DATA  # Cambia a tu archivo
 ruta_copia = cfg.OUTPUT_DATA
 
-# Asegurarte de que existe una copia del archivo original
-if not os.path.exists(ruta_copia):
-    df_original = pd.read_csv(ruta_original)
-    df_original.to_csv(ruta_copia, index=False)
-
 df = pd.read_csv(ruta_copia, sep=";")  # Usar coma como delimitador (por defecto)
 
 
 # Mostrar los datos actuales
-st.subheader("Datos actuales en el archivo:")
+st.subheader("Dades actuals a l'arxiu:")
 st.dataframe(df)
 
 # Crear un formulario para introducir nuevos datos
-st.subheader("Añadir Nuevos Datos")
+st.subheader("Afegir noves dades")
 
 
 with st.form(key="formulario_datos"):
@@ -44,8 +39,8 @@ with st.form(key="formulario_datos"):
         df = pd.concat([df, nueva_fila], ignore_index=True)
         # Guardar el DataFrame actualizado en la copia del archivo
         df.to_csv(ruta_copia, index=False, sep=';')
-        st.success("Se han añadido los nuevos valores a la tabla")
+        st.success("S'han afegit nous valors a la taula.")
 
 # Mostrar el DataFrame actualizado
-st.subheader("Datos Actualizados:")
+st.subheader("Dades Actualitzades:")
 st.dataframe(df)

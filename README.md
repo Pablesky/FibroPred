@@ -19,7 +19,7 @@ Amb FibroPred, els clínics disposen d'una eina potent de suport a la presa de d
 ## Sobre nosaltres:
 Aquest projecte ha estat realitzat en el marc de la Hackaton BitsXLaMarató 2024 per les malalties respiratòries.
 
-Els integrants de l'equip són: Cristina Aguilera, Pablo Vega, Iker Garcia, Sígrid Vila
+Els integrants de l'equip són: Cristina Aguilera, Pablo Vega, Iker Garcia, Sígrid Vila.
 
 
 ## Estructura del model:
@@ -38,9 +38,9 @@ Altra vegada, degut a la sensibilitat de les dades ha calgut fer un preprocessat
         ├── content                         # Dades.
         ├── images_general                  # Images explicabilitat general.
         ├── model_results                   # CSVs de les dades dels models.
-        ├── models                          # Models pytorch
-        ├── models_pesos                    # Pesos des models
-        ├── pages                           # Codi streamlit
+        ├── models                          # Models pytorch.
+        ├── models_pesos                    # Pesos des models.
+        ├── pages                           # Codi streamlit.
         ├── tmp                             # Imatges explicabilitat indiviual.
         ├── utils                           # Codi entrenament models.
         ├── weights                         # Pesos model pytorch.  

@@ -1,5 +1,7 @@
 # FibroPred: Revolucionant la Predicció Pronòstica en la Fibrosi Pulmonar
 
+![Imatge del projecte](./portada.jpg)
+
 La fibrosi pulmonar és una malaltia greu que provoca una cicatrització irreversible del pulmó, fent que una predicció precisa i primerenca sigui essencial. Els models actuals, com el GAP score, tenen un poder predictiu limitat, especialment en casos no idiopàtics. Aquí és on entra en joc *FibroPred*.  
 
 FibroPred és una eina predictiva impulsada per intel·ligència artificial dissenyada per oferir pronòstics personalitzats des del moment del diagnòstic. Utilitzant algoritmes avançats com XGBoost i incorporant biomarcadors innovadors com la longitud telomèrica i l'agregació familiar, FibroPred supera els predictors tradicionals com l'edat i la funció pulmonar.  

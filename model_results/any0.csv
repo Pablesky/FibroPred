@@ -1,0 +1,3 @@
+Metric;Necessity of transplantation;Progressive Disease;Death
+Mean Accuracy (LOO);0.6702;0.8564;0.9149
+Mean Accuracy Balanced (LOO);0.6429;0.6526;0.5

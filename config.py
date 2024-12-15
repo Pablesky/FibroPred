@@ -36,3 +36,5 @@ IMAGES_NAMES = [
     'Death', 
     'Necessity of transplantation'
 ]
+
+METRIC_COLUMN = 'Metric'
